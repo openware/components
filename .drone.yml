@@ -1,0 +1,31 @@
+---
+kind: pipeline
+name: default
+
+steps:
+  - name: Test & Build apllication
+    image: node:12.13.1
+    commands:
+      - yarn install
+      - yarn test
+      - yarn build
+
+  - name: Republish package on npmjs
+    image: node:12.13.1
+    environment:
+      NPM_USERNAME:
+        from_secret: npmjs_username
+      NPM_EMAIL:
+        from_secret: npmjs_email
+      NPMJS_TOKEN:
+        from_secret: npmjs_token
+    commands:
+      - git config --global user.name "$NPM_USERNAME"
+      - git config --global user.email "$NPM_EMAIL"
+      - git fetch origin
+      - echo "//registry.npmjs.org/:_authToken=$NPMJS_TOKEN" > .npmrc
+      - npm publish | true
+
+trigger:
+  event:
+    - push
