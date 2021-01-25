@@ -8,7 +8,9 @@
         "moment": "^2.29.1",
         "numeral": "^2.0.6",
         "react-docgen-typescript": "^1.20.5",
-        "react-virtualized": "9.22.2"
+        "react-virtualized": "9.22.2",
+        "react-redux": "^7.2.2",
+        "redux": "^4.0.5"
     },
     "files": [
         "build"
