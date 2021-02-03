@@ -25,7 +25,7 @@ const Default: Story<any> = ({ height }) => {
     );
 };
 
-const Columns: Story<any> = ({ heigh }) => {
+const Columns: Story<any> = ({ height }) => {
     return (
         <div className="history-story-wrapper" style={{ height }}>
             <TradeHistoryWidget
